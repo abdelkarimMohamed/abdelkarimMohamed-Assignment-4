@@ -32,6 +32,7 @@ class Program
         };
 
         DisplaySessions(sessionNames, sessionDates, sessionDurations);
+        SearchSession(sessionNames, sessionDates, sessionDurations);
 
 
     }
@@ -45,6 +46,30 @@ class Program
             Console.WriteLine($"Duration: {durations[i]} minutes");
             Console.WriteLine();
         }
+    }
+    static void DisplaySessionDetails(string[] names, DateTime[] dates, int[] durations, int index)
+    {
+        Console.WriteLine($"Name: {names[index]}");
+        Console.WriteLine($"Date: {dates[index].ToString("dd MMMM yyyy")}");
+        Console.WriteLine($"Start Time: {dates[index].ToString("hh:mm tt")}");
+        Console.WriteLine($"Duration: {durations[index]} minutes");
+    }
+    static void SearchSession(string[] names, DateTime[] dates, int[] durations) {
+
+        Console.Write("Enter session name: ");
+        string input = Console.ReadLine();
+
+        int index = Array.IndexOf(names, input);
+
+        if (index >= 0)
+        {
+            DisplaySessionDetails(names, dates, durations, index);
+        }
+        else
+        {
+            Console.WriteLine("Session not found.");
+        }
+
     }
 }
 
