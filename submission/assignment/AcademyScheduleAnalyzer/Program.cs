@@ -73,13 +73,16 @@ class Program
                     DisplaySortedDurations(sessionDurations);
                     break;
                 case 8:
-                    RefDemo();
+                    RefDemo(); // ref
                     break;
                 case 9:
-                    OutDemo(sessionNames, sessionDurations);
+                    OutDemo(sessionNames, sessionDurations); //ref
                     break;
                 case 10:
-                    ReferenceTypeDemo(sessionDurations);
+                    ReferenceTypeDemo(sessionDurations);     //ref
+                    break;
+                case 11:
+                    ParamsDemo();     // params Keyword
                     break;
                 case 0:
                     running = false;
@@ -386,6 +389,23 @@ class Program
         foreach (int v in values)
             Console.Write($"{v} ");
         Console.WriteLine();
+    }
+    static int CalculateTotalDuration(params int[] durations)
+    {
+        int total = 0;
+
+        for (int i = 0; i < durations.Length; i++)
+        {
+            total += durations[i];
+        }
+
+        return total;
+    }
+    static void ParamsDemo()
+    {
+        Console.WriteLine($"Two sessions: {CalculateTotalDuration(120, 180)} minutes");
+        Console.WriteLine($"Three sessions: {CalculateTotalDuration(120, 180, 240)} minutes");
+        Console.WriteLine($"Five sessions: {CalculateTotalDuration(60, 90, 120, 180, 240)} minutes");
     }
 
 }
