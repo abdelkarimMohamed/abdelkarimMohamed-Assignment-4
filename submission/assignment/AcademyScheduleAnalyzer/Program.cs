@@ -109,6 +109,9 @@ class Program
                 case 19:   // /Part 17 — Throw an Exception // case:14
                     CheckSessionDuration();
                     break;
+                case 20:
+                    Console.WriteLine(BuildReportUsingString(sessionNames, sessionDates, sessionDurations));// Part 19 — Build a Schedule Report Using string //case:15
+                    break;                
                 case 0:
                     running = false;
                     break;
@@ -656,7 +659,22 @@ class Program
             Console.WriteLine("Input operation finished.");
         }
     }
+    static string BuildReportUsingString(string[] names, DateTime[] dates, int[] durations)
+    {
+        string result = "";
 
+        for (int i = 0; i < names.Length; i++)
+        {
+            result += names[i];
+            result += " - ";
+            result += dates[i].ToString("dd/MM/yyyy hh:mm tt");
+            result += " - ";
+            result += durations[i] + " minutes";
+            result += Environment.NewLine;
+        }
+
+        return result;
+    }
 }
 
 
