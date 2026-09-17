@@ -106,6 +106,9 @@ class Program
                 case 18:
                     SelectSessionByIndex(sessionNames, sessionDates, sessionDurations);//Part 16 Exception Handling: Invalid Array Index// case:13
                     break;
+                case 19:   // /Part 17 — Throw an Exception // case:14
+                    CheckSessionDuration();
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -616,6 +619,33 @@ class Program
         catch (IndexOutOfRangeException)
         {
             Console.WriteLine("The selected session index is out of range.");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Enter a valid whole number.");
+        }
+    }
+    static void ValidateDuration(int duration)
+    {
+        if (duration <= 0)
+        {
+            throw new ArgumentException("Duration must be greater than zero.");
+        }
+
+        Console.WriteLine("Duration accepted.");
+    }
+    static void CheckSessionDuration()
+    {
+        Console.Write("Enter duration: ");
+
+        try
+        {
+            int duration = int.Parse(Console.ReadLine());
+            ValidateDuration(duration);
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
         }
         catch (FormatException)
         {
