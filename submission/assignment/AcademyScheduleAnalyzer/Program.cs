@@ -83,6 +83,9 @@ class Program
                     break;
                 case 11:
                     ParamsDemo();     // params Keyword
+                    break;                
+                case 12:
+                    ShowSessionDateDetails(sessionNames, sessionDates, sessionDurations);//Part 9 — Session Date Details
                     break;
                 case 0:
                     running = false;
@@ -406,6 +409,42 @@ class Program
         Console.WriteLine($"Two sessions: {CalculateTotalDuration(120, 180)} minutes");
         Console.WriteLine($"Three sessions: {CalculateTotalDuration(120, 180, 240)} minutes");
         Console.WriteLine($"Five sessions: {CalculateTotalDuration(60, 90, 120, 180, 240)} minutes");
+    }
+    static DateTime GetSessionEndTime(DateTime startTime, int durationMinutes)
+    {
+        return startTime.AddMinutes(durationMinutes);
+    }
+    static void DisplaySessionDateDetails(string[] names, DateTime[] dates, int[] durations, int index)
+    {
+        DateTime start = dates[index];
+        int duration = durations[index];
+        DateTime end = GetSessionEndTime(start, duration);
+
+        Console.WriteLine($"Session: {names[index]}");
+        Console.WriteLine($"Date: {start.ToString("dd MMMM yyyy")}");
+        Console.WriteLine($"Day: {start.DayOfWeek}");
+        Console.WriteLine($"Year: {start.Year}");
+        Console.WriteLine($"Month: {start.Month}");
+        Console.WriteLine($"Day Number: {start.Day}");
+        Console.WriteLine($"Start Time: {start.ToString("hh:mm tt")}");
+        Console.WriteLine($"Duration: {duration} minutes");
+        Console.WriteLine($"End Time: {end.ToString("hh:mm tt")}");
+    }
+    static void ShowSessionDateDetails(string[] names, DateTime[] dates, int[] durations)
+    {
+        Console.Write("Enter session name: ");
+        string input = Console.ReadLine();
+
+        int index = Array.IndexOf(names, input);
+
+        if (index >= 0)
+        {
+            DisplaySessionDateDetails(names, dates, durations, index);
+        }
+        else
+        {
+            Console.WriteLine("Session not found.");
+        }
     }
 
 }
