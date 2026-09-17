@@ -93,6 +93,9 @@ class Program
                 case 14:
                     DisplayPastAndUpcomingSessions(sessionNames, sessionDates); //Part 11 — Past and Upcoming Sessions // case:9
                     break;
+                case 15:
+                    FindNextSession(sessionNames, sessionDates); // /Part 11 — Past and Upcoming Sessions  // case:10
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -495,6 +498,39 @@ class Program
 
             Console.WriteLine($"{names[i],-22} {status}");
         }
+    }
+    static void FindNextSession(string[] names, DateTime[] dates)
+    {
+        DateTime now = DateTime.Now;
+        int nextIndex = -1;
+
+        for (int i = 0; i < dates.Length; i++)
+        {
+            if (dates[i] > now)
+            {
+                if (nextIndex == -1 || dates[i] < dates[nextIndex])
+                {
+                    nextIndex = i;
+                }
+            }
+        }
+
+        if (nextIndex == -1)
+        {
+            Console.WriteLine("There are no upcoming sessions.");
+            return;
+        }
+
+        TimeSpan remaining = dates[nextIndex] - now;
+
+        Console.WriteLine("Next Session:");
+        Console.WriteLine(names[nextIndex]);
+        Console.WriteLine(dates[nextIndex].ToString("dd MMMM yyyy"));
+        Console.WriteLine(dates[nextIndex].ToString("hh:mm tt"));
+        Console.WriteLine();
+        Console.WriteLine("Time Remaining:");
+        Console.WriteLine($"{remaining.Days} days");
+        Console.WriteLine($"{remaining.Hours} hours");
     }
 
 }
