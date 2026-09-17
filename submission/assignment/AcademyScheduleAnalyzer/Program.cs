@@ -651,6 +651,10 @@ class Program
         {
             Console.WriteLine("Enter a valid whole number.");
         }
+        finally
+        {
+            Console.WriteLine("Input operation finished.");
+        }
     }
 
 }
