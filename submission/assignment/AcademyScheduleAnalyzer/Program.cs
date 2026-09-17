@@ -40,9 +40,47 @@ class Program
         //FindSessionByCondition(sessionNames);
         //FindSessionIndexByCondition(sessionNames);
         //CopyArrayDemo(sessionNames);
-        DisplayDurationStatistics(sessionDurations);
-        DisplaySortedDurations(sessionDurations);
+        //DisplayDurationStatistics(sessionDurations);
+        //DisplaySortedDurations(sessionDurations);
 
+        bool running = true;
+
+        while (running) 
+        { 
+            ShowMenu();
+            int choice = ReadMenuChoice();
+            switch (choice) {
+                case 1:
+                    DisplaySessions(sessionNames, sessionDates, sessionDurations);
+                    break;
+                case 2:
+                    SearchSession(sessionNames, sessionDates, sessionDurations);
+                    break;
+                case 3:
+                    SortSessionNames(sessionNames);
+                    break;
+                case 4:
+                    ReverseSessionNames(sessionNames);
+                    break;
+                case 5:
+                    FindSessionIndex(sessionNames);
+                    break;
+                case 6:
+                    CheckSessionExists(sessionNames);
+                    break;
+                case 7:
+                    DisplayDurationStatistics(sessionDurations);
+                    DisplaySortedDurations(sessionDurations);
+                    break;
+                case 0:
+                    running = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid option.");
+                    break;
+            }
+            Console.WriteLine();
+        }
 
 
     }
@@ -238,7 +276,42 @@ class Program
         }
         Console.WriteLine();
     }
+    static void ShowMenu()
+    {
+        Console.WriteLine("===================================");
+        Console.WriteLine("       Academy Schedule Analyzer   ");
+        Console.WriteLine("===================================");
+        Console.WriteLine("1. Display all sessions");
+        Console.WriteLine("2. Search for a session");
+        Console.WriteLine("3. Sort session names");
+        Console.WriteLine("4. Reverse session names");
+        Console.WriteLine("5. Find session index");
+        Console.WriteLine("6. Check if session exists");
+        Console.WriteLine("7. Show duration statistics");
+        Console.WriteLine("8. Show session date details");
+        Console.WriteLine("9. Show past and upcoming sessions");
+        Console.WriteLine("10. Find next session");
+        Console.WriteLine("11. Compare two session dates");
+        Console.WriteLine("12. Read and validate a custom date");
+        Console.WriteLine("13. Select session by index");
+        Console.WriteLine("14. Validate session duration");
+        Console.WriteLine("15. Generate report using string");
+        Console.WriteLine("16. Generate report using StringBuilder");
+        Console.WriteLine("0. Exit");
+        Console.Write("Choose an option: ");
+    }
+    static int ReadMenuChoice()
+    {
+        while (true)
+        {
+            string input = Console.ReadLine();
 
+            if (int.TryParse(input, out int choice))
+                return choice;
+
+            Console.Write("Invalid input. Please enter a number: ");
+        }
+    }
 
 }
 
