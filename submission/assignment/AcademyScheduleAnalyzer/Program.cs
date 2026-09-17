@@ -31,16 +31,18 @@ class Program
             180
         };
 
-        DisplaySessions(sessionNames, sessionDates, sessionDurations);
-        SearchSession(sessionNames, sessionDates, sessionDurations);
-        SortSessionNames(sessionNames);
-        ReverseSessionNames(sessionNames);
-        FindSessionIndex(sessionNames);
-        CheckSessionExists(sessionNames);
-        FindSessionByCondition(sessionNames);
-        FindSessionIndexByCondition(sessionNames);
-        CopyArrayDemo(sessionNames);
-        
+        //DisplaySessions(sessionNames, sessionDates, sessionDurations);
+        //SearchSession(sessionNames, sessionDates, sessionDurations);
+        //SortSessionNames(sessionNames);
+        //ReverseSessionNames(sessionNames);
+        //FindSessionIndex(sessionNames);
+        //CheckSessionExists(sessionNames);
+        //FindSessionByCondition(sessionNames);
+        //FindSessionIndexByCondition(sessionNames);
+        //CopyArrayDemo(sessionNames);
+        DisplayDurationStatistics(sessionDurations);
+        DisplaySortedDurations(sessionDurations);
+
 
 
     }
@@ -169,6 +171,75 @@ class Program
         foreach (string name in copy)
             Console.WriteLine($"- {name}");
     }
+    static int GetTotalDuration(int[] durations)
+    {
+        int total = 0;
+
+        for (int i = 0; i < durations.Length; i++)
+        {
+            total += durations[i];
+        }
+
+        return total;
+    }
+    static double GetAverageDuration(int[] durations)
+    {
+        int total = GetTotalDuration(durations);
+        return (double)total / durations.Length;
+    }
+    static int GetShortestDuration(int[] durations)
+    {
+        int shortest = durations[0];
+
+        foreach (var item in durations)
+        {
+            if (item < shortest)
+            {
+                shortest = item;
+            }
+        }
+
+        return shortest;
+    }
+    static int GetLongestDuration(int[] durations)
+    {
+        int longest = durations[0];
+
+        for (int i = 1; i < durations.Length; i++)
+        {
+            if (durations[i] > longest)
+            {
+                longest = durations[i];
+            }
+        }
+
+        return longest;
+    }
+
+    static void DisplayDurationStatistics(int[] durations)
+    {
+        Console.WriteLine($"Total Duration: {GetTotalDuration(durations)} minutes");
+        Console.WriteLine($"Average Duration: {GetAverageDuration(durations)} minutes");
+        Console.WriteLine($"Shortest Duration: {GetShortestDuration(durations)} minutes");
+        Console.WriteLine($"Longest Duration: {GetLongestDuration(durations)} minutes");
+    }
+
+    static void DisplaySortedDurations(int[] durations)
+    {
+        int[] copy = new int[durations.Length];
+        Array.Copy(durations, copy, durations.Length);
+
+        Array.Sort(copy);
+
+        Console.WriteLine("Durations sorted (smallest to largest):");
+        foreach (int d in copy)
+        {
+            Console.Write($"{d} ");
+        }
+        Console.WriteLine();
+    }
+
+
 }
 
 
