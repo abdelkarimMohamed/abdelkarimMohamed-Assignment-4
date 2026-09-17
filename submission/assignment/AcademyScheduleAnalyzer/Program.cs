@@ -333,15 +333,20 @@ class Program
         Console.Write("Choose an option: ");
     }
     static int ReadMenuChoice()
-    {
+    {        
         while (true)
         {
-            string input = Console.ReadLine();
-
-            if (int.TryParse(input, out int choice))
+            try
+            {
+                string input = Console.ReadLine();
+                int choice = int.Parse(input);
                 return choice;
-
-            Console.Write("Invalid input. Please enter a number: ");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid menu option. Enter a number.");
+                Console.Write("Choose an option: ");
+            }
         }
     }
     static void DoubleValue(ref int number)
@@ -592,6 +597,7 @@ class Program
 
         Console.WriteLine($"Valid date entered: {date.ToString("dddd, dd MMMM yyyy hh:mm tt")}");
     }
+    
 
 }
 
