@@ -1,4 +1,5 @@
 ﻿namespace AcademyScheduleAnalyzer;
+using System.Globalization;
 
 class Program
 {
@@ -98,6 +99,9 @@ class Program
                     break;
                 case 16:
                     DisplayDateFormats(sessionNames, sessionDates); // /Part 13 — Date Formatting // case:21
+                    break;
+                case 17:                                           // /Part 14 —  Read and Validate a Date// case:12
+                    ReadAndValidateDate();
                     break;
                 case 0:
                     running = false;
@@ -556,6 +560,37 @@ class Program
         Console.WriteLine(date.ToString("dd MMMM yyyy"));
         Console.WriteLine(date.ToString("dddd, dd MMMM yyyy"));
         Console.WriteLine(date.ToString("hh:mm tt"));
+    }
+
+    static DateTime ReadSessionDate()
+    {
+        DateTime result;
+
+        while (true)
+        {
+            Console.Write("Enter a date (yyyy-MM-dd HH:mm): ");
+            string input = Console.ReadLine();
+
+            bool valid = DateTime.TryParseExact(
+                input,
+                "yyyy-MM-dd HH:mm",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out result);
+
+            if (valid)
+            {
+                return result;
+            }
+
+            Console.WriteLine("Invalid date. Use the format yyyy-MM-dd HH:mm");
+        }
+    }
+    static void ReadAndValidateDate()
+    {
+        DateTime date = ReadSessionDate();
+
+        Console.WriteLine($"Valid date entered: {date.ToString("dddd, dd MMMM yyyy hh:mm tt")}");
     }
 
 }
