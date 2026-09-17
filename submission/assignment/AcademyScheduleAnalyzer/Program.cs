@@ -42,14 +42,14 @@ class Program
         //CopyArrayDemo(sessionNames);
         //DisplayDurationStatistics(sessionDurations);
         //DisplaySortedDurations(sessionDurations);
-
         bool running = true;
 
-        while (running) 
-        { 
+        while (running)
+        {
             ShowMenu();
             int choice = ReadMenuChoice();
-            switch (choice) {
+            switch (choice)
+            {
                 case 1:
                     DisplaySessions(sessionNames, sessionDates, sessionDurations);
                     break;
@@ -72,6 +72,15 @@ class Program
                     DisplayDurationStatistics(sessionDurations);
                     DisplaySortedDurations(sessionDurations);
                     break;
+                case 8:
+                    RefDemo();
+                    break;
+                case 9:
+                    OutDemo(sessionNames, sessionDurations);
+                    break;
+                case 10:
+                    ReferenceTypeDemo(sessionDurations);
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -81,6 +90,7 @@ class Program
             }
             Console.WriteLine();
         }
+        //RefDemo();
 
 
     }
@@ -311,6 +321,71 @@ class Program
 
             Console.Write("Invalid input. Please enter a number: ");
         }
+    }
+    static void DoubleValue(ref int number)
+    {
+        number = number * 2;
+    }
+    static void RefDemo()
+    {
+        int value = 100;
+
+        Console.WriteLine($"Before: {value}");
+        DoubleValue(ref value);
+        Console.WriteLine($"After: {value}");
+    }
+    static bool TryGetSessionInfo(string[] names, int[] durations, string sessionName,
+                              out int index, out int duration)
+    {
+        index = Array.IndexOf(names, sessionName);
+
+        if (index >= 0)
+        {
+            duration = durations[index];
+            return true;
+        }
+
+        duration = 0;
+        return false;
+    }
+    static void OutDemo(string[] names, int[] durations)
+    {
+        Console.Write("Enter session: ");
+        string input = Console.ReadLine();
+
+        if (TryGetSessionInfo(names, durations, input, out int index, out int duration))
+        {
+            Console.WriteLine($"Index: {index}");
+            Console.WriteLine($"Duration: {duration} minutes");
+        }
+        else
+        {
+            Console.WriteLine("Session not found.");
+        }
+    }
+    static void ChangeFirstElement(int[] values)
+    {
+        values[0] = 999;
+    }
+    static void ReferenceTypeDemo(int[] durations)
+    {
+        int[] copy = new int[durations.Length];
+        Array.Copy(durations, copy, durations.Length);
+
+        Console.WriteLine("Before calling the function:");
+        PrintArray(copy);
+
+        ChangeFirstElement(copy);
+
+        Console.WriteLine("After calling the function:");
+        PrintArray(copy);
+    }
+
+    static void PrintArray(int[] values)
+    {
+        foreach (int v in values)
+            Console.Write($"{v} ");
+        Console.WriteLine();
     }
 
 }
