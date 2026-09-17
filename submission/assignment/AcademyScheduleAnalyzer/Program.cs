@@ -103,6 +103,9 @@ class Program
                 case 17:                                           // /Part 14 —  Read and Validate a Date// case:12
                     ReadAndValidateDate();
                     break;
+                case 18:
+                    SelectSessionByIndex(sessionNames, sessionDates, sessionDurations);//Part 16 Exception Handling: Invalid Array Index// case:13
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -597,7 +600,28 @@ class Program
 
         Console.WriteLine($"Valid date entered: {date.ToString("dddd, dd MMMM yyyy hh:mm tt")}");
     }
-    
+    static void SelectSessionByIndex(string[] names, DateTime[] dates, int[] durations)
+    {
+        Console.Write("Enter session index: ");
+
+        try
+        {
+            int index = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Session: {names[index]}");
+            Console.WriteLine($"Date: {dates[index].ToString("dd MMMM yyyy")}");
+            Console.WriteLine($"Start Time: {dates[index].ToString("hh:mm tt")}");
+            Console.WriteLine($"Duration: {durations[index]} minutes");
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Console.WriteLine("The selected session index is out of range.");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Enter a valid whole number.");
+        }
+    }
 
 }
 
