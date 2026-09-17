@@ -1,11 +1,18 @@
 ﻿namespace AcademyScheduleAnalyzer;
 using System.Globalization;
 using System.Text;
+using AcademyScheduleAnalyzer.Benchmarks;
+using BenchmarkDotNet.Running;
 
 class Program
 {
     static void Main(string[] args)
     {
+        if (args.Length > 0 && args[0] == "benchmark")
+        {
+            BenchmarkRunner.Run<StringBenchmark>();
+            return;
+        }
         string[] sessionNames =
         {
             "C# Basics",
