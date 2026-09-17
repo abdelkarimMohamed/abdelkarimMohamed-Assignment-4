@@ -1,5 +1,6 @@
 ﻿namespace AcademyScheduleAnalyzer;
 using System.Globalization;
+using System.Text;
 
 class Program
 {
@@ -111,7 +112,11 @@ class Program
                     break;
                 case 20:
                     Console.WriteLine(BuildReportUsingString(sessionNames, sessionDates, sessionDurations));// Part 19 — Build a Schedule Report Using string //case:15
-                    break;                
+                    break;
+                case 21:
+                    Console.WriteLine(BuildReportUsingStringBuilder(sessionNames, sessionDates, sessionDurations)); //Part 20 — Build the Same Report Using StringBuilder //case:16
+
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -674,6 +679,23 @@ class Program
         }
 
         return result;
+    }
+    static string BuildReportUsingStringBuilder(string[] names, DateTime[] dates, int[] durations)
+    {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < names.Length; i++)
+        {
+            builder.Append(names[i]);
+            builder.Append(" - ");
+            builder.Append(dates[i].ToString("dd/MM/yyyy hh:mm tt"));
+            builder.Append(" - ");
+            builder.Append(durations[i]);
+            builder.Append(" minutes");
+            builder.AppendLine();
+        }
+
+        return builder.ToString();
     }
 }
 
