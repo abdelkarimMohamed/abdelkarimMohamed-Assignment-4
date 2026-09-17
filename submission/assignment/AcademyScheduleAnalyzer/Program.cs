@@ -90,6 +90,9 @@ class Program
                 case 13:
                     CompareTwoSessionDates(sessionNames, sessionDates); //Part 10 — Date Difference  // case:11
                     break;
+                case 14:
+                    DisplayPastAndUpcomingSessions(sessionNames, sessionDates); //Part 11 — Past and Upcoming Sessions // case:9
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -472,6 +475,26 @@ class Program
         Console.WriteLine("Difference:");
         Console.WriteLine($"{(int)difference.TotalDays} days");
         Console.WriteLine($"{(int)difference.TotalHours} hours");
+    }
+    static void DisplayPastAndUpcomingSessions(string[] names, DateTime[] dates)
+    {
+        DateTime now = DateTime.Now;
+
+        for (int i = 0; i < names.Length; i++)
+        {
+            string status;
+
+            if (dates[i] < now)
+            {
+                status = "Past";
+            }
+            else
+            {
+                status = "Upcoming";
+            }
+
+            Console.WriteLine($"{names[i],-22} {status}");
+        }
     }
 
 }
