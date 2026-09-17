@@ -81,46 +81,52 @@ class Program
                     DisplayDurationStatistics(sessionDurations);
                     DisplaySortedDurations(sessionDurations);
                     break;
+                //case 8:
+                //    RefDemo(); // ref
+                //    break;
+                //case 9:
+                //    OutDemo(sessionNames, sessionDurations); //ref
+                //    break;
+                //case 10:
+                //    ReferenceTypeDemo(sessionDurations);     //ref
+                //    break;
+                //case 11:
+                //    ParamsDemo();     // params Keyword
+                //    break;
                 case 8:
-                    RefDemo(); // ref
-                    break;
-                case 9:
-                    OutDemo(sessionNames, sessionDurations); //ref
-                    break;
-                case 10:
-                    ReferenceTypeDemo(sessionDurations);     //ref
-                    break;
-                case 11:
-                    ParamsDemo();     // params Keyword
-                    break;
-                case 12:
                     ShowSessionDateDetails(sessionNames, sessionDates, sessionDurations);//Part 9 — Session Date Details // case:8
                     break;
-                case 13:
-                    CompareTwoSessionDates(sessionNames, sessionDates); //Part 10 — Date Difference  // case:11
-                    break;
-                case 14:
+                case 9:
                     DisplayPastAndUpcomingSessions(sessionNames, sessionDates); //Part 11 — Past and Upcoming Sessions // case:9
                     break;
-                case 15:
+                case 10:
                     FindNextSession(sessionNames, sessionDates); // /Part 12 — Past and Upcoming Sessions  // case:10
                     break;
-                case 16:
-                    DisplayDateFormats(sessionNames, sessionDates); // /Part 13 — Date Formatting // case:21
+                case 11:
+                    CompareTwoSessionDates(sessionNames, sessionDates); //Part 10 — Date Difference  // case:11
                     break;
-                case 17:                                           // /Part 14 —  Read and Validate a Date// case:12
+                //case 9:
+                //    DisplayPastAndUpcomingSessions(sessionNames, sessionDates); //Part 11 — Past and Upcoming Sessions // case:9
+                //    break;
+                //case 10:
+                //    FindNextSession(sessionNames, sessionDates); // /Part 12 — Past and Upcoming Sessions  // case:10
+                //    break;
+                //case 16:
+                //    DisplayDateFormats(sessionNames, sessionDates); // /Part 13 — Date Formatting // case:21
+                //    break;
+                case 12:                                           // /Part 14 —  Read and Validate a Date// case:12
                     ReadAndValidateDate();
                     break;
-                case 18:
+                case 13:
                     SelectSessionByIndex(sessionNames, sessionDates, sessionDurations);//Part 16 Exception Handling: Invalid Array Index// case:13
                     break;
-                case 19:   // /Part 17 — Throw an Exception // case:14
+                case 14:   // /Part 17 — Throw an Exception // case:14
                     CheckSessionDuration();
                     break;
-                case 20:
+                case 15:
                     Console.WriteLine(BuildReportUsingString(sessionNames, sessionDates, sessionDurations));// Part 19 — Build a Schedule Report Using string //case:15
                     break;
-                case 21:
+                case 16:
                     Console.WriteLine(BuildReportUsingStringBuilder(sessionNames, sessionDates, sessionDurations)); //Part 20 — Build the Same Report Using StringBuilder //case:16
 
                     break;
