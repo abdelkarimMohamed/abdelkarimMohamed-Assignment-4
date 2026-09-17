@@ -83,9 +83,12 @@ class Program
                     break;
                 case 11:
                     ParamsDemo();     // params Keyword
-                    break;                
+                    break;
                 case 12:
-                    ShowSessionDateDetails(sessionNames, sessionDates, sessionDurations);//Part 9 — Session Date Details
+                    ShowSessionDateDetails(sessionNames, sessionDates, sessionDurations);//Part 9 — Session Date Details // case:8
+                    break;
+                case 13:
+                    CompareTwoSessionDates(sessionNames, sessionDates); //Part 10 — Date Difference  // case:11
                     break;
                 case 0:
                     running = false;
@@ -445,6 +448,30 @@ class Program
         {
             Console.WriteLine("Session not found.");
         }
+    }
+
+    static void CompareTwoSessionDates(string[] names, DateTime[] dates)
+    {
+        Console.Write("First Session: ");
+        string firstInput = Console.ReadLine();
+
+        Console.Write("Second Session: ");
+        string secondInput = Console.ReadLine();
+
+        int firstIndex = Array.IndexOf(names, firstInput);
+        int secondIndex = Array.IndexOf(names, secondInput);
+
+        if (firstIndex < 0 || secondIndex < 0)
+        {
+            Console.WriteLine("Session not found.");
+            return;
+        }
+
+        TimeSpan difference = dates[secondIndex] - dates[firstIndex];
+
+        Console.WriteLine("Difference:");
+        Console.WriteLine($"{(int)difference.TotalDays} days");
+        Console.WriteLine($"{(int)difference.TotalHours} hours");
     }
 
 }
