@@ -94,7 +94,10 @@ class Program
                     DisplayPastAndUpcomingSessions(sessionNames, sessionDates); //Part 11 — Past and Upcoming Sessions // case:9
                     break;
                 case 15:
-                    FindNextSession(sessionNames, sessionDates); // /Part 11 — Past and Upcoming Sessions  // case:10
+                    FindNextSession(sessionNames, sessionDates); // /Part 12 — Past and Upcoming Sessions  // case:10
+                    break;
+                case 16:
+                    DisplayDateFormats(sessionNames, sessionDates); // /Part 13 — Date Formatting // case:21
                     break;
                 case 0:
                     running = false;
@@ -531,6 +534,28 @@ class Program
         Console.WriteLine("Time Remaining:");
         Console.WriteLine($"{remaining.Days} days");
         Console.WriteLine($"{remaining.Hours} hours");
+    }
+    static void DisplayDateFormats(string[] names, DateTime[] dates)
+    {
+        Console.Write("Enter session name: ");
+        string input = Console.ReadLine();
+
+        int index = Array.IndexOf(names, input);
+
+        if (index < 0)
+        {
+            Console.WriteLine("Session not found.");
+            return;
+        }
+
+        DateTime date = dates[index];
+
+        Console.WriteLine($"Session: {names[index]}");
+        Console.WriteLine(date.ToString("yyyy-MM-dd"));
+        Console.WriteLine(date.ToString("dd/MM/yyyy"));
+        Console.WriteLine(date.ToString("dd MMMM yyyy"));
+        Console.WriteLine(date.ToString("dddd, dd MMMM yyyy"));
+        Console.WriteLine(date.ToString("hh:mm tt"));
     }
 
 }
